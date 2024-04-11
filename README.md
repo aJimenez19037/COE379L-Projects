@@ -55,7 +55,7 @@ python3 test_api.py images-cnn-split/test/damage/-93.53950999999999_30.982944.jp
 {'result': [[0.9999943971633911, 5.603660611086525e-06]]}
 ```
 ### Flask application usage
-Below are the routes in the flask application. The ANN models were not included as they performed poorly compared to the CNN models. Additionally, lenet5 model has an accuracy around 0.96 and the alternate lenet5 model has an accuracy around 0.97. 
+Below are the routes in the flask application. The ANN models were not included as they performed poorly compared to the CNN models. Additionally, lenet5 model has an accuracy around 0.96 and the alternate lenet5 model has an accuracy around 0.97. Additional notes about the inference server is that it only works when passing in one image at a time. The image must be 128x128x3 and does not need to be preprocessed. The Flask server performs preprocessing on the inputted image. 
 Here is a table of the routes:
 
 | Route | Method | Description |
