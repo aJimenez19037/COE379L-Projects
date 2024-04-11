@@ -29,7 +29,7 @@ api.py - flask application
 test_api.py - python script used to make a request to flask application
 
 ### Using the Inference Server
-This is written under the assumption you are using an ssh tunnel developed in class. The following commands will launch the flask api
+This is written under the assumption you are using an ssh tunnel developed in class. To close the server simply press ctrl-c in the terminal. The following commands will launch the flask app:
 ```
 docker pull antjim19037/hurricane_api 
 docker run -it --rm -p 5000:5000 antjim19037/hurricane_api
