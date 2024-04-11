@@ -8,9 +8,9 @@ The purpose of this project was to create a linear regression model based on lea
 The purpose of this project was to determine the best model for predicting if a patient was likely to have a recurrence event for breast cancer. In this project 3 models were built: Random Forest, K-Neares Neighbor, and Multinomial Naive Bayes. Throughout this project I prepared and analyzed the data, split the data into training and test set, fit the data to the different models, and evaluated their performance using different metrics. The models in this project were optimized for maximizing recall using sklearn grid search function. More detail can be found in the report (.pdf).
 
 ## Project 3 - Hurrican Harvey Classification Inference Server
-This purpose of this project was to create an inference server that wraps a model designed to classify satellite images with damage or no damage taken from a satellite from Hurricane Harvey. Through this project several dense/ANN models were built a long with a lenet5 based model and an alternate lenet5 model based on the paper: ["Building Damage Annotation on Post-Hurricane
+This purpose of this project was to create an inference server that wraps a model designed to classify satellite images with damage or no damage taken from a satellite from Hurricane Harvey. Through this project several dense/ANN models were built a long with a lenet5 based model and an alternate lenet5 model based on the paper: ["Building Damage Annotation on Post-Hurricane.
 Satellite Imagery Based on Convolutional Neural
-Networks"](https://arxiv.org/pdf/1807.01688.pdf). 
+Networks"](https://arxiv.org/pdf/1807.01688.pdf). This project involved Data preprocessing and visualization, model design, training, and evaluation, and model deployment. 
 ### Files
 images-cnn-split - contains images split into test, train and further split into damage and no damage which is used when training the model.
 
@@ -46,7 +46,7 @@ docker pull jstubbs/coe379l
 docker run --rm --name nb -p 8888:8888 -v $(pwd)/nb-data:/code -d --entrypoint=sleep jstubbs/coe379l infinity
 docker exec -it nb bash
 ```
-Running test_api.py - First step is to install tensorflow_datasets as the class container does not install install. You can then run the python script by passing in an image. In the commands bellow we pass is a test image that is labeled as damage. We see the model output agrees as the probability that it is damage is 0.9999943971633911. 
+Running test_api.py - First step is to install tensorflow_datasets as the class container does not install install. You can then run the python script by passing in an image. In the commands below we pass a test image that is labeled as damage. We see the model output agrees as the probability that it is damage is 0.9999943971633911. Additionally this script is written to use the alt_lenet5 route as it performed the best out of all of the models built for this project. 
 ```
 pip install tensorflow_datasets
 cd Project3/
