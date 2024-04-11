@@ -13,13 +13,21 @@ Satellite Imagery Based on Convolutional Neural
 Networks"](https://arxiv.org/pdf/1807.01688.pdf). 
 ### Files
 images-cnn-split - contains images split into test, train and further split into damage and no damage which is used when training the model.
+
 images - contains all of the images provided
+
 keras models - contains saved CNN and ANN models models.
+
 Dockerfile - used to build docker container to run flask app
+
 HurricaneDamageANN.ipynb - jupyter notebook used to train ANN models
+
 HurricaneDamageCNN.ipynb - jupyter notebook used to train CNN models
+
 api.py - flask application
+
 test_api.py - python script used to make a request to flask application
+
 ### Using the Inference Server
 This is written under the assumption you are using an ssh tunnel developed in class. The following commands will launch the flask api
 ```
