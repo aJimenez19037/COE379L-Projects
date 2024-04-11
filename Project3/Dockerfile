@@ -4,8 +4,9 @@ FROM python:3.11
 
 RUN pip install tensorflow==2.15
 RUN pip install Flask==3.0
+Run pip install tensorflow_datasets --user 
 
-COPY models /models
+COPY keras_models /keras_models
 COPY api.py /api.py
 
 

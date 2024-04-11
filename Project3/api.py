@@ -1,10 +1,11 @@
 import tensorflow as tf
-import tensorflow_datasets as tfds
 from tensorflow.keras.layers.experimental.preprocessing import Rescaling
-from flask import Flask
+from flask import Flask, request
+import numpy as np
 
 #laod in model
-alt_lenet5_cnn = tf.keras.models.load_model('alt_lenet5.keras')
+alt_lenet5_cnn = tf.keras.models.load_model('keras_models/alt_lenet5.keras')
+lenet5_cnn = tf.keras.models.load_model('keras_models/lenet5.keras')
 
 # # pre-processing...
 # # normalize
@@ -29,16 +30,18 @@ alt_lenet5_cnn = tf.keras.models.load_model('alt_lenet5.keras')
 app = Flask(__name__)
 
 def preprocess_input(im):
-   """
-   Converts user-provided input into an array that can be used with the model.
-   This function could raise an exception.
-   """
-   # convert to a numpy array
-   d = np.array(im)
-   # then add an extra dimension
-   return d.reshape(3, 128, 128)
+    """
+    Converts user-provided input into an array that can be used with the model.
+    This function could raise an exception.
+    """
+    # Convert image to numpy array
+    d = np.array(im)
+    d = d/255
+    # Add an extra dimension to simulate batch dimension
+    d = np.expand_dims(d, axis=0)
+    return d
 @app.route('/models/alt_lenet5', methods=['GET'])
-def model_info():
+def model_info_alt_lenet5():
    return {
       "version": "v1",
       "name": "alt_lenet5",
@@ -46,7 +49,7 @@ def model_info():
       "number_of_parameters": 3453121
    }
 @app.route('/models/alt_lenet5', methods=['POST'])
-def classify_clothes_image():
+def classify_alt_lenet5():
    im = request.json.get('image')
    if not im:
       return {"error": "The `image` field is required"}, 404
@@ -54,7 +57,26 @@ def classify_clothes_image():
       data = preprocess_input(im)
    except Exception as e:
       return {"error": f"Could not process the `image` field; details: {e}"}, 404
-   return { "result": model.predict(data).tolist()}
+   return { "result": alt_lenet5_cnn.predict(data).tolist()}
+
+@app.route('/models/lenet5', methods=['GET'])
+def model_info_lenet5():
+   return {
+      "version": "v1",
+      "name": "lenet5",
+      "description": "Classify hurricane images into damage or not damage housing based on lenet model",
+      "number_of_parameters": 857458
+   }
+@app.route('/models/lenet5', methods=['POST'])
+def classify_lenet5():
+   im = request.json.get('image')
+   if not im:
+      return {"error": "The `image` field is required"}, 404
+   try:
+      data = preprocess_input(im)
+   except Exception as e:
+      return {"error": f"Could not process the `image` field; details: {e}"}, 404
+   return { "result": lenet5_cnn.predict(data).tolist()}
 
 # start the development server
 if __name__ == '__main__':
