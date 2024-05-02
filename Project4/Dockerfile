@@ -10,6 +10,5 @@ RUN pip install requests==2.31.0
 
 COPY models /models
 COPY api.py /api.py
-COPY testdata.csv /testdata.csv
 
 CMD ["python", "api.py"]
