@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 from flask import Flask, request, jsonify
-=======
-
-from flask import Flask, request
->>>>>>> 18378c01b51d75bfe5ae62c933a677487d2f4f60
 import pandas as pd
 import numpy as np
 import sklearn 
@@ -43,28 +38,27 @@ def model_info_acc_xgb():
     return{
         "name": "acc_xgb",
         "type": "xgboost",
-        "optimized for": "accuracy"
+        "optimized for": "accuracy",
+        "accuracy score on test": "0.74",
+        "true recall score on test": "0.33"
     }
 @app.route('/models/acc_xgb', methods=['POST'])
 def classify_acc_xgb():
-    ## try:
-    return {"result": jsonify(acc_xgb.predict(gdata))}
-    ##except:
-    ##    return {"error": "The 'entry' field is required"}, 404
+    return jsonify(acc_xgb.predict(gdata).tolist())
+
 
 @app.route('/models/recall_xgb', methods = ['GET'])
 def model_info_recall_xgb():
     return{
         "name": "recall_xgb",
         "type": "xgboost",
-        "optimized for": "recall"
+        "optimized for": "recall",
+        "accuracy score on test": "0.76",
+        "true recall score on test": "0.42"
                                             }
 @app.route('/models/recall_xgb', methods=['POST'])
 def classify_recall_xgb():
-    entry = request.json('entry')
-    if not entry:
-        return {"error": "The 'entry' field is required"}, 404
-    return {"result":recall_xgb.predict(data)}
+    return jsonify(recall_xgb.predict(gdata).tolist())
 
 
 @app.route('/models/acc_svm', methods = ['GET'])
@@ -72,28 +66,26 @@ def model_info_acc_svm():
     return{
         "name": "acc_svm",
         "type": "svm",
-        "optimized for": "accuracy"
+        "optimized for": "accuracy",
+        "accuracy score on test": "0.71",
+        "true recall score on test": "0.00"
                                             }
 @app.route('/models/acc_svm', methods=['POST'])
 def classify_acc_svm():
-    entry = request.json('entry')
-    if not entry:
-        return {"error": "The 'entry' field is required"}, 404
-    return {"result":acc_svm.predict(data)}
+    return jsonify(acc_svm.predict(gdata).tolist())
 
 @app.route('/models/recall_svm', methods = ['GET'])
 def model_info_recall_svm():
     return{
         "name": "recall_svm",
         "type": "svm",
-        "optimized for": "recall"
+        "optimized for": "recall",
+        "accuracy score on test": "0.62",
+        "true recall score on test": "0.29"
         }
 @app.route('/models/recall_svm', methods=['POST'])
 def classify_recall_svm():
-    entry = request.json('entry')
-    if not entry:
-        return {"error": "The 'entry' field is required"}, 404
-    return {"result":recall_svm.predict(data)}
+    return jsonify(recall_svm.predict(gdata).tolist())
     
 
 if __name__ == '__main__':
