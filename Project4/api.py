@@ -12,6 +12,8 @@ import pickle
 import requests
 import json
 
+
+
 with open('models/acc_xgb','rb') as f:
     acc_xgb = pickle.load(f)
 
@@ -27,11 +29,19 @@ with open('models/recall_svm', 'rb') as f3:
 
 app = Flask(__name__)
 
+@app.route('/models', methods = ["POST"])
 def get_data():
-    data = pd.read_csv("testdata.csv")
-    return data
+    global gdata
+    if 'file' not in request.files:
+        return jsonify({'error': 'No file part'}), 400
+    data = request.files['file']
+    if data.filename == '':
+        return jsonify({'error': 'No selected file'}), 400
+    data = pd.read_csv(data)
+    gdata = data
+    return ('Data loaded')
 
-gdata = get_data()
+
 
 @app.route('/models/acc_xgb', methods = ['GET'])
 def model_info_acc_xgb():
@@ -44,8 +54,10 @@ def model_info_acc_xgb():
     }
 @app.route('/models/acc_xgb', methods=['POST'])
 def classify_acc_xgb():
-    return jsonify(acc_xgb.predict(gdata).tolist())
-
+    d = acc_xgb.predict(gdata).tolist()
+    bool_list = list(map(bool,d))
+    ##return jsonify(acc_xgb.predict(gdata).tolist())
+    return jsonify(bool_list)
 
 @app.route('/models/recall_xgb', methods = ['GET'])
 def model_info_recall_xgb():
@@ -58,7 +70,9 @@ def model_info_recall_xgb():
                                             }
 @app.route('/models/recall_xgb', methods=['POST'])
 def classify_recall_xgb():
-    return jsonify(recall_xgb.predict(gdata).tolist())
+    d = recall_xgb.predict(gdata).tolist()
+    bool_list = list(map(bool,d))
+    return jsonify(bool_list)
 
 
 @app.route('/models/acc_svm', methods = ['GET'])
