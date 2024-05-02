@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 from flask import Flask, request, jsonify
+=======
+
+from flask import Flask, request
+>>>>>>> 18378c01b51d75bfe5ae62c933a677487d2f4f60
 import pandas as pd
 import numpy as np
 import sklearn 
@@ -93,3 +98,4 @@ def classify_recall_svm():
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
+
