@@ -128,7 +128,7 @@ Data loaded
 ```
 Route:
 ```
-curl -X GET 172.17.0.1:5000/recall_svm
+curl -X GET 172.17.0.1:5000/models/recall_svm
 ```
 Output:
 ```
@@ -142,7 +142,7 @@ Output:
 ```
 Route:
 ```
-curl -X POST 172.17.0.1:5000/recall_svm
+curl -X POST 172.17.0.1:5000/models/recall_svm
 ```
 Output:
 ```
