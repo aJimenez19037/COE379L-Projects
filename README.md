@@ -93,7 +93,7 @@ docker run -it --rm -p 5000:5000 avlavelle/starfish
 In another terminal, clone this repository onto your vm and move into the Project4 folder.
 ```
 git clone git@github.com:aJimenez19037/COE379L-Projects.git
-Cd Project4
+cd Project4
 ```
 Now you are ready to use the ```POST``` route of the flask application to load the data. In your commandline, execute
 ```
