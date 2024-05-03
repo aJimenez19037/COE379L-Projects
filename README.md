@@ -90,13 +90,14 @@ Open a terminal and use the ssh tunnel. Then, execute the following commands
 docker pull avlavelle/starfish 
 docker run -it --rm -p 5000:5000 avlavelle/starfish
 ```
-In another terminal, clone this repository onto your vm 
+In another terminal, clone this repository onto your vm and move into the Project4 folder.
 ```
 git clone git@github.com:aJimenez19037/COE379L-Projects.git
+Cd Project4
 ```
-Cd into the Project4 folder and then you are ready to use the ```POST``` route of the flask application to load the data. In your commandline, execute
+Now you are ready to use the ```POST``` route of the flask application to load the data. In your commandline, execute
 ```
-curl -X POST -F "file=@testdata.csv" 172.17.0.1:5000/models
+curl -X POST -F "file=@testdata.csv" 127.0.0.1:5000/models
 ```
 If successful, ```Data loaded``` will be printed. This route can be used to load in any version of the data that is processed according to what is found in our ```.ipynb``` files. If your file uses a different name than ```testdata.csv```, be sure to replace the file name in the curl command and be sure that it is located in the Project 4 directory. This ```POST``` ```/models``` route must be curled before any of the other routes are called in order to load in the data.
 
@@ -120,7 +121,7 @@ Here is a table of the routes:
 Demonstrated below are exactly how to call the routes and their sample outputs. Use the above table to curl different models.
 Route:
 ```
-curl -X POST -F "file=@testdata.csv" 172.17.0.1:5000/models
+curl -X POST -F "file=@testdata.csv" 127.0.0.1:5000/models
 ```
 Output:
 ```
@@ -128,7 +129,7 @@ Data loaded
 ```
 Route:
 ```
-curl -X GET 172.17.0.1:5000/models/recall_svm
+curl -X GET 127.0.0.1:5000/models/recall_svm
 ```
 Output:
 ```
@@ -142,7 +143,7 @@ Output:
 ```
 Route:
 ```
-curl -X POST 172.17.0.1:5000/models/recall_svm
+curl -X POST 127.0.0.1:5000/models/recall_svm
 ```
 Output:
 ```
