@@ -39,7 +39,7 @@ def get_data():
         return jsonify({'error': 'No selected file'}), 400
     data = pd.read_csv(data)
     gdata = data
-    return ('Data loaded')
+    return ('Data loaded\n')
 
 
 
