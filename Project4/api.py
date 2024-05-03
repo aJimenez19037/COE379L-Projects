@@ -49,8 +49,8 @@ def model_info_acc_xgb():
         "name": "acc_xgb",
         "type": "xgboost",
         "optimized for": "accuracy",
-        "accuracy score on test": "0.74",
-        "true recall score on test": "0.33"
+        "accuracy score on test": "0.70",
+        "true recall score on test": "0.22"
     }
 @app.route('/models/acc_xgb', methods=['POST'])
 def classify_acc_xgb():
@@ -65,8 +65,8 @@ def model_info_recall_xgb():
         "name": "recall_xgb",
         "type": "xgboost",
         "optimized for": "recall",
-        "accuracy score on test": "0.76",
-        "true recall score on test": "0.42"
+        "accuracy score on test": "0.72",
+        "true recall score on test": "0.26"
                                             }
 @app.route('/models/recall_xgb', methods=['POST'])
 def classify_recall_xgb():
@@ -81,8 +81,8 @@ def model_info_acc_svm():
         "name": "acc_svm",
         "type": "svm",
         "optimized for": "accuracy",
-        "accuracy score on test": "0.71",
-        "true recall score on test": "0.00"
+        "accuracy score on test": "0.67",
+        "true recall score on test": "0.09"
                                             }
 @app.route('/models/acc_svm', methods=['POST'])
 def classify_acc_svm():
@@ -94,8 +94,8 @@ def model_info_recall_svm():
         "name": "recall_svm",
         "type": "svm",
         "optimized for": "recall",
-        "accuracy score on test": "0.62",
-        "true recall score on test": "0.29"
+        "accuracy score on test": "0.63",
+        "true recall score on test": "0.26"
         }
 @app.route('/models/recall_svm', methods=['POST'])
 def classify_recall_svm():
